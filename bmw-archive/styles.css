@@ -1,0 +1,163 @@
+/* Removes default browser spacing and makes sizing easier */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Controls the whole page */
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f4ee;
+  color: #111;
+  padding: 20px;
+}
+
+/* Header section with logo and title */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Temporary BMW logo circle */
+.logo-circle {
+  width: 90px;
+  height: 90px;
+  border: 4px solid #111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Main page title */
+.site-header h1 {
+  font-size: 64px;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+}
+
+/* Subtitle under title */
+.site-header p {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-top: 6px;
+}
+
+/* Decade button navigation */
+.decade-nav {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+/* Individual navigation buttons */
+.decade-nav button {
+  padding: 10px 28px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* First button styled as active */
+.decade-nav button:first-child {
+  background: #004b83;
+  color: white;
+}
+
+/* Grid that holds all car cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid #ccc;
+}
+
+/* Individual car card */
+.car-card {
+  min-height: 260px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background: #FAF8F3;
+}
+
+/* Year text */
+.car-card h2 {
+  color: #004b83;
+  font-size: 34px;
+  display: inline-block;
+  margin-right: 12px;
+}
+
+/* Car model name */
+.car-card h3 {
+  display: inline-block;
+  font-size: 24px;
+}
+
+/* Placeholder where car image will go later */
+.car-image-placeholder {
+  height: 110px;
+  margin: 18px 0;
+  border: 2px dashed #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-weight: bold;
+}
+
+/* Description text */
+.car-card p {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+/* Stats area */
+.stats {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.car-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Tablet layout */
+@media (max-width: 1000px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .site-header h1 {
+    font-size: 44px;
+  }
+}
+
+/* Phone layout */
+@media (max-width: 650px) {
+  .site-header {
+    flex-direction: column;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header h1 {
+    font-size: 34px;
+  }
+}

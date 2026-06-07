@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!-- Tells the browser this is an HTML5 document -->
+
+<html lang="en">
+<!-- Root element of the entire webpage -->
+<!-- lang="en" tells browsers and screen readers the page is in English -->
+
+<head>
+    <!-- Information about the page goes here -->
+    <!-- Users do not see anything inside the head section -->
+
+    <meta charset="UTF-8">
+    <!-- Allows special characters and symbols to display correctly -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Makes the site scale properly on phones and tablets -->
+
+    <title>BMW Model Archive</title>
+    <!-- Text shown in the browser tab -->
+
+    <link rel="stylesheet" href="styles.css">
+    <!-- Connects this HTML page to our CSS stylesheet -->
+</head>
+
+<body>
+    <!-- Everything inside the body appears on the webpage -->
+
+    <!-- ========================= -->
+    <!-- WEBSITE HEADER -->
+    <!-- ========================= -->
+    <!-- Header contains branding and page title -->
+
+    <header class="site-header">
+
+        <!-- Simple placeholder BMW logo -->
+        <div class="logo-circle">
+            BMW
+        </div>
+
+        <!-- Main title area -->
+        <div>
+
+            <!-- Largest heading on the page -->
+            <h1>BMW Model Archive</h1>
+
+            <!-- Small descriptive text underneath -->
+            <p>
+                Every generation. Every era. The ultimate driving machine.
+            </p>
+
+        </div>
+
+    </header>
+
+    <!-- ========================= -->
+    <!-- NAVIGATION BAR -->
+    <!-- ========================= -->
+    <!-- Users click these buttons to switch decades -->
+
+    <nav class="decade-nav">
+
+        <button>All Models</button>
+        <button>1930s</button>
+        <button>1940s</button>
+        <button>1950s</button>
+        <button>1960s</button>
+        <button>1970s</button>
+        <button>1980s</button>
+        <button>1990s</button>
+        <button>2000s</button>
+        <button>2010s</button>
+        <button>2020s</button>
+
+    </nav>
+
+    <!-- ========================= -->
+    <!-- MAIN PAGE CONTENT -->
+    <!-- ========================= -->
+    <!-- The main tag contains the primary content of the webpage -->
+
+    <main>
+
+        <!-- ========================= -->
+        <!-- CARD GRID -->
+        <!-- ========================= -->
+        <!-- This will eventually hold all BMW cards -->
+
+        <section class="card-grid">
+            <!-- ========================= -->
+            <!-- SINGLE BMW CARD -->
+            <!-- ========================= -->
+            <!-- One card represents one BMW model -->
+            <article class="car-card">
+                <!-- Year of the vehicle -->
+                <h2>1929</h2>
+                <!-- Vehicle name -->
+                <h3>BMW 3/15 PS</h3>
+                <!-- Placeholder image area -->
+                
+                <!--<div class="car-image-placeholder">
+                    Car Image
+                </div> -->
+                
+                <img src="images/bmw_1930s/bmw_3_15_ps_side_pro_gen.png" alt="BMW 3/15 PS Side Profile" class="car-image">
+                <!-- Short description -->
+                <p>
+                    BMW's first automobile. The beginning of the BMW legacy.
+                </p>
+                <!-- ========================= -->
+                <!-- VEHICLE STATS -->
+                <!-- ========================= -->
+                <div class="stats">
+                    <p>Engine: 4-Cyl 747cc</p>
+                    <p>Power: 15 HP</p>
+                    <p>Top Speed: 53 mph</p>
+                    <p>Years: 1929-1932</p>
+                </div>
+            </article>
+
+            <!-- Second BMW -->
+            <article class="car-card">
+                <!-- Year of the vehicle -->
+                <h2>1936</h2>
+                <!-- Vehicle name -->
+                <h3>BMW 328</h3>
+                <!-- Placeholder image area -->
+                
+                <!--<div class="car-image-placeholder">
+                    Car Image
+                </div> -->
+                
+                <img src="images/bmw_1930s/bmw_328_side_pro_gen.png" alt="BMW 3/15 PS Side Profile" class="car-image">
+                
+                <!-- Short description -->
+                <p>
+                    A legendary sports car that dominated its class and helped establish BMW's reputation in motorsport.
+                </p>
+                <!-- ========================= -->
+                <!-- VEHICLE STATS -->
+                <!-- ========================= -->
+                <div class="stats">
+                    <p>Engine: 2.0L I6</p>
+                    <p>Power: 80 HP</p>
+                    <p>Top Speed: 93 mph</p>
+                    <p>Years: 1936-1940</p>
+                </div>
+            </article>
+
+            <!-- Third BMW -->
+            <article class="car-card">
+                <!-- Year of the vehicle -->
+                <h2>1956</h2>
+                <!-- Vehicle name -->
+                <h3>BMW 507</h3>
+                <!-- Placeholder image area -->
+              
+                <!--<div class="car-image-placeholder">
+                    Car Image
+                </div> -->
+              
+                <img src="images/bmw_1950s/bmw_507_side_pro_gen.png" alt="BMW 3/15 PS Side Profile" class="car-image">
+                
+                <!-- Short description -->
+                <p>
+                    A stunning roadster with timeless design and strong performance. One of BMW's most iconic classics.
+                </p>
+                <!-- ========================= -->
+                <!-- VEHICLE STATS -->
+                <!-- ========================= -->
+                <div class="stats">
+                    <p>Engine: 3.2L V8</p>
+                    <p>Power: 150 HP</p>
+                    <p>Top Speed: 120 mph</p>
+                    <p>Years: 1956-1959</p>
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- ========================= -->
+    <!-- JAVASCRIPT FILE -->
+    <!-- ========================= -->
+    <!-- Loaded at the bottom so HTML loads first -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
