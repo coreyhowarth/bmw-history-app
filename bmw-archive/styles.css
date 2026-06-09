@@ -112,11 +112,20 @@ body {
   margin-bottom: 14px;
 }
 
-/* Car image */
+/* Car image
 .car-image {
   width: 70%;
   height: auto;
   display: block;
+}
+*/
+
+/* Car image */
+.car-image {
+    width: 100%;
+    max-width: 300px;
+    height: 180px;
+    object-fit: contain;
 }
 
 /* Stats beside image */
