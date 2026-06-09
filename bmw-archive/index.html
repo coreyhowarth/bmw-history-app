@@ -5,16 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BMW Model Archive</title>
     <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   </head>
 
   <body>
     <!-- Website header: logo, main title, and subtitle -->
     <header class="site-header">
-      <div class="logo-circle">BMW</div>
+      <div class="logo-circle">
+        <img src="images/logo/bmw_logo.png" alt="BMW Logo" />
+      </div>
 
       <div class="header-text">
-        <h1>BMW Model Archive</h1>
-        <p>Every generation. Every era. The ultimate driving machine.</p>
+        <h1>BMW MODEL ARCHIVE</h1>
+        <p>EVERY GENERATION. EVERY ERA. THE ULTIMATE DRIVING MACHINE.</p>
       </div>
     </header>
 
@@ -37,204 +43,28 @@
     <main>
       <!-- Card grid: JavaScript injecting car card -->
       <section class="card-grid" id="js-car-grid"></section>
-
-      <!-- Card grid: one parent grid that holds every BMW card -->
-      
-      <!--
-      <section class="card-grid">
-        <article class="car-card">
-          <div class="card-title">
-            <h2>1929</h2>
-            <h3>BMW 3/15 PS</h3>
-          </div>
-
-          <div class="card-content">
-            <img src="images/bmw_1930s/bmw_3_15_ps_side_pro_gen.png" alt="BMW 3/15 PS Side Profile" class="car-image" />
-
-            <div class="stats">
-              <p>Engine: 4-Cyl 747cc</p>
-              <p>Power: 15 HP</p>
-              <p>Top Speed: 53 mph</p>
-              <p>Years: 1929-1932</p>
-            </div>
-          </div>
-
-          <p class="car-description">BMW's first automobile. The beginning of the BMW legacy.</p>
-        </article>
-
-        <article class="car-card">
-          <div class="card-title">
-            <h2>1936</h2>
-            <h3>BMW 328</h3>
-          </div>
-
-          <div class="card-content">
-            <img src="images/bmw_1930s/bmw_328_side_pro_gen.png" alt="BMW 328 Side Profile" class="car-image" />
-
-            <div class="stats">
-              <p>Engine: 2.0L I6</p>
-              <p>Power: 80 HP</p>
-              <p>Top Speed: 93 mph</p>
-              <p>Years: 1936-1940</p>
-            </div>
-          </div>
-
-          <p class="car-description">
-            A legendary sports car that dominated its class and helped establish BMW's reputation in motorsport.
-          </p>
-        </article>
-
-        <article class="car-card">
-          <div class="card-title">
-            <h2>1956</h2>
-            <h3>BMW 507</h3>
-          </div>
-
-          <div class="card-content">
-            <img src="images/bmw_1950s/bmw_507_side_pro_gen.png" alt="BMW 507 Side Profile" class="car-image" />
-
-            <div class="stats">
-              <p>Engine: 3.2L V8</p>
-              <p>Power: 150 HP</p>
-              <p>Top Speed: 120 mph</p>
-              <p>Years: 1956-1959</p>
-            </div>
-          </div>
-
-          <p class="car-description">
-            A stunning roadster with timeless design and strong performance. One of BMW's most iconic classics.
-          </p>
-        </article>
-
-        <article class="car-card">
-          <div class="card-title">
-            <h2>1955</h2>
-            <h3>BMW Isetta 300</h3>
-          </div>
-
-          <div class="card-content">
-            <img
-              src="images/bmw_1950s/bmw_isetta_300_pro_gen.png"
-              alt="BMW Isetta 300 Side Profile"
-              class="car-image" />
-
-            <div class="stats">
-              <p>Engine: 298cc Isetta</p>
-              <p>Power: 13 HP</p>
-              <p>Top Speed: 53 mph</p>
-              <p>Years: 1955-1962</p>
-            </div>
-          </div>
-
-          <p class="car-description">
-            The microcar that made mobility possible for millions. Small in size, big in impact.
-          </p>
-        </article>
-
-        <article class="car-card">
-          <div class="card-title">
-            <h2>1968</h2>
-            <h3>BMW 2002</h3>
-          </div>
-
-          <div class="card-content">
-            <img src="images/bmw_1960s/bmw_2002_side_pro_gen.png" alt="BMW 2002 Side Profile" class="car-image" />
-
-            <div class="stats">
-              <p>Engine: 2.0L I4</p>
-              <p>Power: 100 HP</p>
-              <p>Top Speed: 112 mph</p>
-              <p>Years: 1968-1976</p>
-            </div>
-          </div>
-
-          <p class="car-description">The car that saved BMW. A sporty, driver-focused sedan that became a legend.</p>
-        </article>
-
-        <article class="car-card">
-          <div class="card-title">
-            <h2>1986</h2>
-            <h3>BMW M3 (E30)</h3>
-          </div>
-
-          <div class="card-content">
-            <img src="images/bmw_1980s/bmw_m3_e30_side_pro_gen.png" alt="BMW M3 E30 Side Profile" class="car-image" />
-
-            <div class="stats">
-              <p>Engine: 2.3L I4</p>
-              <p>Power: 192 HP</p>
-              <p>Top Speed: 140 mph</p>
-              <p>Years: 1986-1991</p>
-            </div>
-          </div>
-
-          <p class="car-description">
-            Born for motorsport. The E30 M3 is one of the most beloved performance cars ever built.
-          </p>
-        </article>
-
-        <article class="car-card">
-          <div class="card-title">
-            <h2>1998</h2>
-            <h3>BMW M5 (E39)</h3>
-          </div>
-
-          <div class="card-content">
-            <img src="images/bmw_1990s/bmw_m5_e39_side_pro_gen.png" alt="BMW M5 E39 Side Profile" class="car-image" />
-
-            <div class="stats">
-              <p>Engine: 4.9L V8</p>
-              <p>Power: 394 HP</p>
-              <p>Top Speed: 155 mph</p>
-              <p>Years: 1998-2003</p>
-            </div>
-          </div>
-
-          <p class="car-description">A perfect blend of luxury and performance. The E39 M5 set the benchmark.</p>
-        </article>
-
-        <article class="car-card">
-          <div class="card-title">
-            <h2>2000</h2>
-            <h3>BMW M3 (E46)</h3>
-          </div>
-
-          <div class="card-content">
-            <img src="images/bmw_2000s/bmw_m3_e46_side_pro_gen.png" alt="BMW M3 E46 Side Profile" class="car-image" />
-
-            <div class="stats">
-              <p>Engine: 3.2L I6</p>
-              <p>Power: 333 HP</p>
-              <p>Top Speed: 155 mph</p>
-              <p>Years: 2000-2006</p>
-            </div>
-          </div>
-
-          <p class="car-description">High-revving, naturally aspirated perfection. The E46 M3 is a modern classic.</p>
-        </article>
-
-        <article class="car-card">
-          <div class="card-title">
-            <h2>2014</h2>
-            <h3>BMW i8</h3>
-          </div>
-
-          <div class="card-content">
-            <img src="images/bmw_2010s/bmw_i8_side_pro_gen.png" alt="BMW i8 Side Profile" class="car-image" />
-
-            <div class="stats">
-              <p>Engine: 1.5L Turbo I3 + Electric Motor</p>
-              <p>Power: 362 HP</p>
-              <p>Top Speed: 155 mph</p>
-              <p>Years: 2014-2020</p>
-            </div>
-          </div>
-
-          <p class="car-description">A futuristic hybrid sports car that represents BMW's vision for tomorrow.</p>
-        </article>
-      </section>
-      -->
     </main>
+
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>
+          BMW Model Archive is an independent educational and historical project. This website is not affiliated with,
+          endorsed by, sponsored by, or associated with Bayerische Motoren Werke AG (BMW AG).
+        </p>
+
+        <p>
+          BMW®, M®, MINI®, and related names, vehicle model names, logos, and trademarks are the property of BMW AG
+          and their respective owners.
+        </p>
+
+        <p>
+          Vehicle information, specifications, and historical data are provided for informational purposes only and may
+          contain inaccuracies.
+        </p>
+
+        <p>© 2026 BMW Model Archive. Unofficial fan-created historical archive. © 2026 Corey Howarth. All rights reserved.</p>
+      </div>
+    </footer>
 
     <script src="app.js"></script>
   </body>
