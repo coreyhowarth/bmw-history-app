@@ -1,0 +1,178 @@
+/* Reset browser defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Whole page */
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f4ee;
+  color: #111;
+  padding: 20px;
+}
+
+/* Header */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.logo-circle {
+  width: 90px;
+  height: 90px;
+  border: 4px solid #111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.site-header h1 {
+  font-size: 64px;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+}
+
+.site-header p {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-top: 6px;
+}
+
+/* Navigation */
+.decade-nav {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.decade-nav button {
+  padding: 10px 28px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.decade-nav button:first-child {
+  background: #004b83;
+  color: white;
+}
+
+/* Main grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+
+/* Individual card */
+.car-card {
+  min-height: 260px;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background: #faf8f3;
+}
+
+/* Card title row */
+.card-title {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.card-title h2 {
+  color: #004b83;
+  font-size: 34px;
+}
+
+.card-title h3 {
+  font-size: 24px;
+}
+
+/* Image and stats row */
+.card-content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 14px;
+}
+
+/* Car image */
+.car-image {
+  width: 70%;
+  height: auto;
+  display: block;
+}
+
+/* Stats beside image */
+.stats {
+  width: 30%;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.stats p {
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+/* Description under image/stats */
+.car-description {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Tablet */
+@media (max-width: 1000px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .site-header h1 {
+    font-size: 44px;
+  }
+}
+
+/* Phone */
+@media (max-width: 650px) {
+  body {
+    padding: 12px;
+  }
+
+  .site-header {
+    flex-direction: column;
+  }
+
+  .site-header h1 {
+    font-size: 34px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .car-image,
+  .stats {
+    width: 100%;
+  }
+}
