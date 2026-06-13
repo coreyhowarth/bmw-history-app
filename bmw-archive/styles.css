@@ -8,7 +8,7 @@
 /* Whole page */
 body {
   font-family: "Inter", Arial, sans-serif;
-  background: #F3EFE8;
+  background: #ECE7E0;
   color: #111111;
   padding: 20px;
 }
@@ -18,9 +18,9 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 24px;
+  gap: 45px;
   margin-bottom: 24px;
-  padding-left: 120px;
+  padding-left: 225px;
 }
 
 .logo-circle {
@@ -38,20 +38,19 @@ body {
 
 .site-header h1 {
   font-family: "Barlow Condensed", Arial, sans-serif;
-  font-size: 88px;
+  font-size: 82px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 8px;
+  letter-spacing: 9px;
   line-height: 0.9;
-  margin: 0;
   text-align: left;
 }
 
 .site-header p {
   font-family: "Inter", Arial, sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   margin: 10px 0 0 0;
   text-align: left;
 }
@@ -69,11 +68,12 @@ body {
   font-family: "Barlow Condensed", sans-serif;
   font-size: 20px;
   font-weight: 700;
-  padding: 8px 30px;
+  padding: 10px 26px;
   line-height: 20px;
   letter-spacing: 1px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.04);
   border: 1px solid #d2d2d2;
-  border-radius: 8px;
+  border-radius: 12px;
   background: white;
   color: #222;
   cursor: pointer;
@@ -81,43 +81,48 @@ body {
 }
 
 .decade-nav button.active {
-  background: #004b83;
+  background: #005A9C;
   color: white;
-  border-color: #004b83;
+  border-color: #005A9C;
 }
 
 .decade-nav button:hover {
-  background: #005A9C;
+  background: #005a9c;
   color: white;
-  border-color: #B88A44;
-}
-
-.decade-nav button:first-child {
-  background: #004b83;
-  color: white;
-  border-color: #004b83;
+  border-color: #b88a44;
+  transition: 0.2s ease;
+  transform: translateY(-2px);
 }
 
 /* Main grid */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 0 8px 24px;
 }
 
 /* Individual card */
 .car-card {
-  height: 300px;
-  padding: 8px;
+  min-height: 300px;
+  padding: 14px;
   display: grid;
   grid-template-rows: auto auto 1fr;
-  background: #FBF8F4;
-  border: 1px solid #ddd7d0;
-  border-radius: 14px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  background: #faf5f1;
+  border: 1px solid #d8d2c8;
+  border-radius: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+  transition: all 0.2s ease;
+  border-top: 2px solid #B88A44;
 }
 
 .car-card:hover {
-  box-shadow: 0 0 0 2px #B88A44;
+  box-shadow: 0 0 0 2px #b88a44;
+  z-index: 10;
+  transform: translateY(-4px);
 }
 
 /* Title row */
@@ -140,47 +145,56 @@ body {
 /* Model name */
 .card-title h3 {
   font-family: "Inter", Arial, sans-serif;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
 }
 
 /* Image + stats layout */
 .card-content {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 4fr 1fr;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+/* Description */
+.car-description {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  max-width: 360px;
+  font-weight: 400;
+  margin-top: 18px;
+  line-height: 1.6;
+  color: #444;
 }
 
 /* Car image */
 .car-image {
   width: 100%;
-  height: 180px;
+  height: 230px;
   object-fit: cover;
-  object-position: center;
-  display: block;
 }
 
 /* Stats column */
 .stats {
   font-family: "Inter", Arial, sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 }
 
 .stat-row {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
 }
 
 .stat-row i {
   font-size: 18px;
-  color: #222;
+  color: #b88a44;
   margin-top: 2px;
 }
 
@@ -197,21 +211,14 @@ body {
   margin: 0;
 }
 
-/* Description */
-.car-description {
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1.25;
-  max-width: 360px;
-  font-weight: 600;
-}
-
 /* Footer */
 .site-footer {
-  margin-top: 50px;
-  padding: 30px 20px;
-  background-color: #f0ebe5;
-   border-top: 3px solid #B88A44;
+  margin-top: 80px;
+  padding: 30px;
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  border-top: 1px solid #d8d2c8;
 }
 
 .footer-content {
@@ -225,11 +232,6 @@ body {
   line-height: 1.6;
   color: #555;
   margin-bottom: 10px;
-}
-
-.active {
-  background: #B88A44;
-  color: white;
 }
 
 /* Tablet */
