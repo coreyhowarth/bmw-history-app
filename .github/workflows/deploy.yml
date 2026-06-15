@@ -21,6 +21,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Upload website files to S3
+        working-directory: bmw-archive
         run: |
           aws s3 cp index.html s3://awscoreyhowarth-bmw-574802241521-us-west-1-an/bmw-archive/
           aws s3 cp styles.css s3://awscoreyhowarth-bmw-574802241521-us-west-1-an/bmw-archive/
