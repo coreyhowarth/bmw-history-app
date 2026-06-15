@@ -22,7 +22,7 @@ jobs:
 
       - name: Upload website files to S3
         run: |
-          aws s3 sync . s3://arn:aws:s3:::awscoreyhowarth-bmw-574802241521-us-west-1-an
+          aws s3 sync . s3://awscoreyhowarth-bmw-574802241521-us-west-1-an --delete
             --exclude ".git/*" \
             --exclude ".github/*" \
             --exclude "README.md"
