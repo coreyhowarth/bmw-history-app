@@ -20,7 +20,7 @@ body {
   align-items: center;
   gap: 45px;
   margin-bottom: 24px;
-  padding-left: 160px;
+  padding-left: 240px;
 }
 
 .logo-circle {
@@ -92,6 +92,41 @@ body {
   border-color: #b88a44;
   transition: 0.2s ease;
   transform: translateY(-2px);
+}
+
+/* Search Bar */
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 22px;
+  padding: 0 20px;
+}
+
+.search-wrapper input {
+  width: 100%;
+  max-width: 520px;
+  padding: 12px 18px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+  background: #FBF8F4;
+  border: 1px solid #d2d2d2;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: all 0.2s ease;
+}
+
+.search-wrapper input::placeholder {
+  color: #777;
+  font-weight: 500;
+}
+
+.search-wrapper input:focus {
+  border-color: #B88A44;
+  box-shadow: 0 0 0 3px rgba(184, 138, 68, 0.18);
+  background: white;
 }
 
 /* Main grid */

@@ -1,43 +1,48 @@
 // Confirm JavaScript file loaded successfully
 // If this prints in browser console, app.js is connected properly
-
 console.log("BMW Archive Loaded");
 
 // API endpoint from AWS API Gateway
 // Frontend sends request here to get BMW data from backend
-
 const API_URL = "https://lzw16bqvh5.execute-api.us-west-1.amazonaws.com/default/bmw-models-api";
 
 // Find HTML container where BMW cards will be inserted
-
 const grid = document.getElementById("js-car-grid");
 
 // Find all decade buttons in navigation bar
 // JavaScript listens for user clicks here
-
 const decadeButtons = document.querySelectorAll(".decade-nav button");
 
+// Search-wrapper
+const searchInput = document.getElementById("car-search");
+
+// Loop through every decade button in navigation
+// Example: All Models, 1930s, 1950s, 1970s...
+
 decadeButtons.forEach((button) => {
+  // Wait for user to click a button
   button.addEventListener("click", () => {
-    decadeButtons.forEach((btn) => btn.classList.remove("active"));
+    // Loop through ALL buttons again
+    // Remove "active" CSS class from every button
+    // This resets previous selection
+    decadeButtons.forEach((btn) => 
+      btn.classList.remove("active")
+    );
+    // Add "active" CSS class ONLY to button user clicked
+    // Visually highlights selected decade
     button.classList.add("active");
   });
 });
-
 // Store ALL BMW cars in memory
 // Needed so we can filter cars later
-
 let allCars = [];
 
 // Clear old content
-
 grid.innerHTML = "";
 
 // Function that builds ONE BMW card
 // Takes a single BMW object and returns HTML template
-
 function createCarCard(car) {
-
   return `
 
     <article class="car-card">
@@ -102,101 +107,107 @@ function createCarCard(car) {
 
 // Function that renders BMW cards on webpage
 // Can display ALL cars or FILTERED cars
-
 function renderCars(carsToRender) {
-
   // Remove old cards first
-
   grid.innerHTML = "";
-
   // Loop through every car object
-
-  carsToRender.forEach(car => {
+  carsToRender.forEach((car) => {
     grid.innerHTML += createCarCard(car);
   });
 }
 
+// Search Wrapper EventListener
+searchInput.addEventListener("input", () => {
+  // Run shared filtering logic
+  applyFilters();
+  const filteredCars = allCars.filter((car) => {
+    return (
+      car.model.toLowerCase().includes(searchTerm) ||
+      car.year.toLowerCase().includes(searchTerm) ||
+      car.engine.toLowerCase().includes(searchTerm) ||
+      car.description.toLowerCase().includes(searchTerm)
+    );
+  });
+  renderCars(filteredCars);
+});
+
 // Main function that loads BMW data from AWS backend
-
 async function loadCars() {
-
   try {
-
     // Send request to API Gateway
-
     const response = await fetch(API_URL);
-
     // Check API success
-
     if (!response.ok) {
       throw new Error(`API error: ${response.status}`);
     }
-
     // Convert JSON response into JavaScript array
-
     const cars = await response.json();
-
     // Save all cars into memory
     // Needed for decade filtering later
-
     allCars = cars;
-
-
     // Render all cars on first page load
-
     renderCars(allCars);
-
   } catch (error) {
-
     console.error("Failed to load cars:", error);
-
     grid.innerHTML = "<p>Failed to load BMW data.</p>";
   }
 }
 
-// Listen for button clicks
-// Runs when user clicks decade buttons
+// Track currently selected decade
+// Default = show all cars
+let activeDecade = "all";
 
-decadeButtons.forEach(button => {
-
+// Listen for user clicking decade buttons
+decadeButtons.forEach((button) => {
   button.addEventListener("click", () => {
-
-    // Read decade from HTML button
-
-    const selectedDecade = button.dataset.decade;
-
-    // If All Models clicked
-    // Show every BMW again
-
-    if (selectedDecade === "all") {
-      renderCars(allCars);
-      return;
-    }
-
-    // Convert decade into number
-    // Example: "1970s" becomes 1970
-
-    const decadeStart = Number(selectedDecade.slice(0, 4));
-
-    // Filter cars by matching decade
-
-    const filteredCars = allCars.filter(car => {
-
-      const year = Number(car.year);
-
-      return year >= decadeStart && year <= decadeStart + 9;
-
+    // Save currently selected decade
+    // Example: 1970s, 1980s, all
+    activeDecade = button.dataset.decade;
+    // Remove active highlight from all buttons
+    decadeButtons.forEach((btn) => {
+      btn.classList.remove("active");
     });
-
-    // Show filtered cars only
-
-    renderCars(filteredCars);
-
+    // Highlight selected button
+    button.classList.add("active");
+    // Run combined filtering logic
+    // Search + decade filters work together
+    applyFilters();
   });
-
 });
+
+// Shared filtering function
+// Handles BOTH search bar and decade buttons
+function applyFilters() {
+  // Read current search text
+  const searchTerm = searchInput.value.toLowerCase();
+  // Start with all cars
+  let filteredCars = allCars;
+  // Apply decade filter first
+  if (activeDecade !== "all") {
+    // Convert decade into number
+    // Example: 1970s → 1970
+    const decadeStart = Number(activeDecade.slice(0, 4));
+    // Keep only cars matching decade
+    filteredCars = filteredCars.filter((car) => {
+      const year = Number(car.year);
+      return year >= decadeStart && year <= decadeStart + 9;
+    });
+  }
+  // Apply search filter second
+  if (searchTerm !== "") {
+    filteredCars = filteredCars.filter((car) => {
+      return (
+        car.model.toLowerCase().includes(searchTerm) ||
+        car.year.toLowerCase().includes(searchTerm) ||
+        car.engine.toLowerCase().includes(searchTerm) ||
+        car.description.toLowerCase().includes(searchTerm)
+      );
+    });
+  }
+  // Render final filtered cars
+  renderCars(filteredCars);
+}
 
 // Start application
 // Load all BMW cars when page opens
-
 loadCars();
