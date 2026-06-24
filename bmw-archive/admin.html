@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <!-- Allows browser to understand standard text characters -->
+  <meta charset="UTF-8" />
+
+  <!-- Makes website scale properly on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Text shown on browser tab -->
+  <title>BMW Archive Admin</title>
+
+  <!-- Connect HTML to external CSS file -->
+  <link rel="stylesheet" href="admin.css" />
+
+</head>
+
+<body>
+
+  <!-- Main wrapper containing entire admin page -->
+  <main class="admin-page">
+
+    <!-- Top section of page -->
+    <header class="admin-header">
+
+      <!-- Main page title -->
+      <h1>BMW Archive Admin</h1>
+
+      <!-- Small explanation under title -->
+      <p>Add, edit, or remove BMW model records.</p>
+
+    </header>
+
+    <!-- Section for form inputs -->
+    <section class="admin-panel">
+
+      <h2>Add / Edit Car</h2>
+
+      <!-- Form where user enters car data -->
+      <form id="carForm">
+
+        <!-- Unique identifier for each car -->
+        <input
+          type="text"
+          id="id"
+          placeholder="id: bmw-m3-e30"
+          required />
+
+        <!-- Single year car was introduced -->
+        <input
+          type="text"
+          id="year"
+          placeholder="Year: 1986"
+          required />
+
+        <!-- Production years -->
+        <input
+          type="text"
+          id="years"
+          placeholder="Years: 1986-1991"
+          required />
+
+        <!-- Car model name -->
+        <input
+          type="text"
+          id="model"
+          placeholder="Model: BMW M3 (E30)"
+          required />
+
+        <!-- Engine information -->
+        <input
+          type="text"
+          id="engine"
+          placeholder="Engine: 2.3L I4"
+          required />
+
+        <!-- Horsepower -->
+        <input
+          type="text"
+          id="power"
+          placeholder="Power: 192 HP"
+          required />
+
+        <!-- Vehicle speed -->
+        <input
+          type="text"
+          id="topSpeed"
+          placeholder="Top Speed: 140 mph"
+          required />
+
+        <!-- Image location/path -->
+        <input
+          type="text"
+          id="image"
+          placeholder="Image path"
+          required /> 
+        
+        <img id="previewImage" src="" alt="Preview" class="admin-thumbnail" style="display: none;" />
+
+        <!-- Longer description -->
+        <textarea
+          id="description"
+          placeholder="Description"
+          required></textarea>
+          
+        <!-- Submit button -->
+        <button type="submit">Save Car</button>
+        
+      </form>
+
+    </section>
+
+    <!-- Section where saved cars appear -->
+    <section class="admin-panel">
+
+      <h2>Current Cars</h2>
+
+      <!-- JavaScript inserts car list here -->
+      <div id="carList" class="car-list"></div>
+      
+      
+
+    </section>
+
+  </main>
+
+  <!-- Connect JavaScript file -->
+  <script src="admin.js"></script>
+
+</body>
+</html>
