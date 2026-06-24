@@ -132,6 +132,35 @@ async function loadCars() {
 }
 loadCars();
 
+async function deleteCar(id) {
+  const confirmDelete = confirm(`Delete ${id}?`);
+
+  if (!confirmDelete) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_URL}/${id}`, {
+      method: "DELETE"
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || "Delete failed");
+    }
+
+    cars = cars.filter(car => car.id !== id);
+    renderCars();
+
+    alert("Car deleted from DynamoDB");
+
+  } catch (error) {
+    console.error("Delete failed:", error);
+    alert("Delete failed. Check console.");
+  }
+}
+
 function renderCars() {
   carList.innerHTML = "";
 
@@ -162,9 +191,9 @@ function renderCars() {
           Edit
         </button>
 
-        <button class="delete-btn" onclick="alert('Delete API not built yet')">
-          Delete
-        </button>
+        <button class="delete-btn" onclick="deleteCar('${car.id}')">
+            Delete
+          </button>
       </div>
     `;
 
