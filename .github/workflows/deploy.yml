@@ -27,6 +27,9 @@ jobs:
           aws s3 cp styles.css s3://awscoreyhowarth-bmw-574802241521-us-west-1-an/bmw-archive/
           aws s3 cp app.js s3://awscoreyhowarth-bmw-574802241521-us-west-1-an/bmw-archive/
           aws s3 sync images/ s3://awscoreyhowarth-bmw-574802241521-us-west-1-an/bmw-archive/images/
+          aws s3 cp admin.html s3://awscoreyhowarth-bmw-574802241521-us-west-1-an/bmw-archive/
+          aws s3 cp admin.js s3://awscoreyhowarth-bmw-574802241521-us-west-1-an/bmw-archive/
+          aws s3 cp admin.css s3://awscoreyhowarth-bmw-574802241521-us-west-1-an/bmw-archive/
 
       - name: Invalidate CloudFront cache
         run: |

@@ -7,7 +7,7 @@ const API_URL = "https://33sn264097.execute-api.us-west-1.amazonaws.com/cars";
 
 const COGNITO_DOMAIN = "https://us-west-1oawhavgma.auth.us-west-1.amazoncognito.com";
 const CLIENT_ID = "66b0d5tir0sa06l31bt0nm1aoa";
-const REDIRECT_URI = "https://d84l1y8p4kdic.cloudfront.net/admin.html";
+const REDIRECT_URI = "https://d1p0wkvp1e7lan.cloudfront.net/admin.html";
 
 // Grab the HTML form
 const carForm = document.getElementById("carForm");
