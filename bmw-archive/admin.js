@@ -20,17 +20,17 @@ const preview = document.getElementById("previewImage");
 // Temporary frontend-only list
 // This only shows cars added during this browser session
 let cars = [];
-
+let editMode = false;
 
 // ==============================
 // FORM SUBMIT: POST TO AWS
 // ==============================
 
 carForm.addEventListener("submit", async function (event) {
-  // Stop browser from refreshing the page
   event.preventDefault();
 
-  // Build car object from form inputs
+  const wasEditing = editMode;
+
   const car = {
     id: document.getElementById("id").value,
     year: document.getElementById("year").value,
@@ -44,44 +44,49 @@ carForm.addEventListener("submit", async function (event) {
   };
 
   try {
-    // Send car object to API Gateway
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(car)
-    });
+    let response;
 
-    // Convert API response from JSON string into JS object
-    const result = await response.json();
-
-    // If API returned an error, stop and show it
-    if (!response.ok) {
-      throw new Error(result.message || "Failed to save car");
+    if (wasEditing) {
+      response = await fetch(`${API_URL}/${car.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(car)
+      });
+    } else {
+      response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(car)
+      });
     }
 
-    // Add car to temporary page list only after AWS save succeeds
-    cars.push(car);
+    const result = await response.json();
 
-    // Refresh visible admin list
-    renderCars();
+    if (!response.ok) {
+      throw new Error(result.message || "Save failed");
+    }
 
-    // Clear form
     carForm.reset();
 
-    // Hide preview after saving
+    document.getElementById("id").disabled = false;
+    document.querySelector("button[type='submit']").textContent = "Save Car";
+
+    editMode = false;
+
     preview.style.display = "none";
     preview.src = "";
 
-    alert("Car saved to DynamoDB");
+    await loadCars();
+
+    alert(wasEditing ? "Car updated successfully" : "Car saved successfully");
 
   } catch (error) {
-    // Show error in browser console
     console.error("Save failed:", error);
-
-    // Show simple user-facing alert
-    alert("Failed to save car. Check console.");
+    alert("Save failed. Check console.");
   }
 });
 
@@ -187,7 +192,7 @@ function renderCars() {
       </div>
 
       <div class="admin-actions">
-        <button class="edit-btn" onclick="alert('Update API not built yet')">
+       <button class="edit-btn" onclick="editCar('${car.id}')">
           Edit
         </button>
 
@@ -198,5 +203,41 @@ function renderCars() {
     `;
 
     carList.appendChild(div);
+  });
+}
+
+function editCar(id) {
+  const car = cars.find(car => car.id === id);
+
+  if (!car) {
+    alert("Car not found");
+    return;
+  }
+
+  // Enter edit mode
+  editMode = true;
+
+  // Fill form with existing car data
+  document.getElementById("id").value = car.id;
+  document.getElementById("year").value = car.year;
+  document.getElementById("years").value = car.years || "";
+  document.getElementById("model").value = car.model;
+  document.getElementById("engine").value = car.engine;
+  document.getElementById("power").value = car.power;
+  document.getElementById("topSpeed").value = car.topSpeed;
+  document.getElementById("image").value = car.image || "";
+  document.getElementById("description").value = car.description || "";
+
+  // Lock ID so primary key cannot change
+  document.getElementById("id").disabled = true;
+
+  // Change button text
+  document.querySelector("button[type='submit']").textContent =
+    "Update Car";
+
+  // Scroll back to form
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
   });
 }

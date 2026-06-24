@@ -54,45 +54,31 @@ function createCarCard(car) {
 
       <div class="card-content">
 
-        <img
-          src="${car.image}"
-          alt="${car.model} Side Profile"
-          class="car-image"
-        />
+        <div class="car-image-wrap">
+          <img class="car-image" src="${car.image}" alt="${car.model}" />
+        </div>
 
-        <div class="stats">
-
+        <div class="stats stats-horizontal">
           <div class="stat-row">
             <i class="bi bi-gear"></i>
-            <div>
-              <span>Engine</span>
-              <p>${car.engine}</p>
-            </div>
+            <div><span>Engine</span><p>${car.engine}</p></div>
           </div>
 
           <div class="stat-row">
             <i class="bi bi-lightning-charge-fill"></i>
-            <div>
-              <span>Power</span>
-              <p>${car.power}</p>
-            </div>
+            <div><span>Power</span><p>${car.power}</p></div>
           </div>
 
           <div class="stat-row">
             <i class="bi bi-speedometer"></i>
-            <div>
-              <span>Top Speed</span>
-              <p>${car.topSpeed}</p>
-            </div>
+            <div><span>Top Speed</span><p>${car.topSpeed}</p></div>
           </div>
 
           <div class="stat-row">
             <i class="bi bi-calendar3"></i>
-            <div>
-              <span>Years</span>
-              <p>${car.years}</p>
-            </div>
+            <div><span>Years</span><p>${car.years}</p></div>
           </div>
+        </div>
 
         </div>
 

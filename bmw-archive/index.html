@@ -76,7 +76,7 @@
       </div>
     </header>
 
-    <!-- Navigation buttons for filtering cars by decade later -->
+   <div class="sticky-controls">
     <nav class="decade-nav">
       <button class="active" data-decade="all">All Models</button>
       <button data-decade="1930s">1930s</button>
@@ -91,16 +91,15 @@
       <button data-decade="2020s">2020s</button>
     </nav>
 
-    <!-- Main content area -->
-    <main>
-      <div class="search-wrapper">
-        <input type="text" id="car-search" placeholder="Search by model, year, engine, or keyword..." />
-      </div>
+    <div class="search-wrapper">
+      <input type="text" id="car-search" placeholder="Search by model, year, engine, or keyword..." />
+    </div>
+  </div>
 
-      <!-- Card grid: JavaScript injecting car card -->
-      <section class="card-grid" id="js-car-grid"></section>
-    </main>
-
+  <main>
+    <section class="card-grid" id="js-car-grid"></section>
+  </main>
+    
     <footer class="site-footer">
       <div class="footer-content">
         <p>
