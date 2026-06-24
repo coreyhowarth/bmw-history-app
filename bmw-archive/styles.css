@@ -20,14 +20,14 @@ body {
   align-items: center;
   gap: 45px;
   margin-bottom: 24px;
-  padding-left: 240px;
+  padding-left: 160px;
 }
 
 .logo-circle {
   height: 190px;
   flex-shrink: 0;
   margin: -40px;
-  padding-right: 20px;
+  padding-right: -80px;
 }
 
 .logo-circle img {
