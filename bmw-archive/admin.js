@@ -5,6 +5,10 @@
 // API Gateway endpoint for adding cars to DynamoDB
 const API_URL = "https://33sn264097.execute-api.us-west-1.amazonaws.com/cars";
 
+const COGNITO_DOMAIN = "https://us-west-1oawhavgma.auth.us-west-1.amazoncognito.com";
+const CLIENT_ID = "66b0d5tir0sa06l31bt0nm1aoa";
+const REDIRECT_URI = "https://d84l1y8p4kdic.cloudfront.net/admin.html";
+
 // Grab the HTML form
 const carForm = document.getElementById("carForm");
 
@@ -21,6 +25,48 @@ const preview = document.getElementById("previewImage");
 // This only shows cars added during this browser session
 let cars = [];
 let editMode = false;
+
+function getToken() {
+  return localStorage.getItem("id_token");
+}
+
+function login() {
+  const loginUrl =
+    `${COGNITO_DOMAIN}/login?` +
+    `client_id=${CLIENT_ID}&` +
+    `response_type=token&` +
+    `scope=email+openid+phone&` +
+    `redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
+
+  window.location.href = loginUrl;
+}
+
+function logout() {
+  localStorage.removeItem("id_token");
+
+  const logoutUrl =
+    `${COGNITO_DOMAIN}/logout?` + `client_id=${CLIENT_ID}&` + `logout_uri=${encodeURIComponent(REDIRECT_URI)}`;
+
+  window.location.href = logoutUrl;
+}
+
+function handleLoginRedirect() {
+  const hash = window.location.hash;
+
+  if (!hash) {
+    return;
+  }
+
+  const params = new URLSearchParams(hash.substring(1));
+  const idToken = params.get("id_token");
+
+  if (idToken) {
+    localStorage.setItem("id_token", idToken);
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+}
+
+handleLoginRedirect();
 
 // ==============================
 // FORM SUBMIT: POST TO AWS
@@ -50,7 +96,8 @@ carForm.addEventListener("submit", async function (event) {
       response = await fetch(`${API_URL}/${car.id}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`
         },
         body: JSON.stringify(car)
       });
@@ -58,7 +105,8 @@ carForm.addEventListener("submit", async function (event) {
       response = await fetch(API_URL, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`
         },
         body: JSON.stringify(car)
       });
@@ -83,13 +131,11 @@ carForm.addEventListener("submit", async function (event) {
     await loadCars();
 
     alert(wasEditing ? "Car updated successfully" : "Car saved successfully");
-
   } catch (error) {
     console.error("Save failed:", error);
     alert("Save failed. Check console.");
   }
 });
-
 
 // ==============================
 // IMAGE PREVIEW
@@ -114,9 +160,7 @@ imageInput.addEventListener("input", function () {
 Load cars from AWS when page opens
 */
 async function loadCars() {
-
   try {
-
     // Send GET request to API Gateway
     const response = await fetch(API_URL);
 
@@ -128,11 +172,8 @@ async function loadCars() {
 
     // Display cars on page
     renderCars();
-
   } catch (error) {
-
     console.error("Failed loading cars:", error);
-
   }
 }
 loadCars();
@@ -146,7 +187,10 @@ async function deleteCar(id) {
 
   try {
     const response = await fetch(`${API_URL}/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${getToken()}`
+      }
     });
 
     const result = await response.json();
@@ -155,11 +199,10 @@ async function deleteCar(id) {
       throw new Error(result.message || "Delete failed");
     }
 
-    cars = cars.filter(car => car.id !== id);
+    cars = cars.filter((car) => car.id !== id);
     renderCars();
 
     alert("Car deleted from DynamoDB");
-
   } catch (error) {
     console.error("Delete failed:", error);
     alert("Delete failed. Check console.");
@@ -207,7 +250,7 @@ function renderCars() {
 }
 
 function editCar(id) {
-  const car = cars.find(car => car.id === id);
+  const car = cars.find((car) => car.id === id);
 
   if (!car) {
     alert("Car not found");
@@ -232,8 +275,7 @@ function editCar(id) {
   document.getElementById("id").disabled = true;
 
   // Change button text
-  document.querySelector("button[type='submit']").textContent =
-    "Update Car";
+  document.querySelector("button[type='submit']").textContent = "Update Car";
 
   // Scroll back to form
   window.scrollTo({
