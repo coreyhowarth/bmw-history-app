@@ -212,8 +212,8 @@ body {
 .stats-horizontal {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: -9px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
   margin: 0 0 16px;
   padding: 14px 10px;
   border-top: 1px solid rgba(184, 138, 68, 0.35);

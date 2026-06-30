@@ -61,25 +61,49 @@ function createCarCard(car) {
         <div class="stats stats-horizontal">
           <div class="stat-row">
             <i class="bi bi-gear"></i>
-            <div><span>Engine</span><p>${car.engine}</p></div>
+            <div><span>Engine</span><p>${car.engine || "N/A"}</p></div>
           </div>
 
           <div class="stat-row">
             <i class="bi bi-lightning-charge-fill"></i>
-            <div><span>Power</span><p>${car.power}</p></div>
+            <div><span>Power</span><p>${car.power || "N/A"}</p></div>
+          </div>
+
+          <div class="stat-row">
+            <i class="bi bi-wrench-adjustable"></i>
+            <div><span>Torque</span><p>${car.torque || "N/A"}</p></div>
           </div>
 
           <div class="stat-row">
             <i class="bi bi-speedometer"></i>
-            <div><span>Top Speed</span><p>${car.topSpeed}</p></div>
+            <div><span>Top Speed</span><p>${car.topSpeed || "N/A"}</p></div>
+          </div>
+
+          <div class="stat-row">
+            <i class="bi bi-car-front-fill"></i>
+            <div><span>Body</span><p>${car.bodyStyle || "N/A"}</p></div>
+          </div>
+
+          <div class="stat-row">
+            <i class="bi bi-disc"></i>
+            <div><span>Drive</span><p>${car.drive || "N/A"}</p></div>
+          </div>
+
+          <div class="stat-row">
+            <i class="bi bi-arrow-repeat"></i>
+            <div><span>Transmission</span><p>${car.transmission || "N/A"}</p></div>
+          </div>
+
+          <div class="stat-row">
+            <i class="bi bi-fuel-pump-fill"></i>
+            <div><span>Fuel</span><p>${car.fuelType || "N/A"}</p></div>
           </div>
 
           <div class="stat-row">
             <i class="bi bi-calendar3"></i>
-            <div><span>Years</span><p>${car.years}</p></div>
+            <div><span>Years</span><p>${car.years || "N/A"}</p></div>
           </div>
         </div>
-
         </div>
 
       </div>
@@ -112,6 +136,11 @@ searchInput.addEventListener("input", () => {
       car.year.toLowerCase().includes(searchTerm) ||
       car.engine.toLowerCase().includes(searchTerm) ||
       car.description.toLowerCase().includes(searchTerm)
+      (car.torque || "").toLowerCase().includes(searchTerm) ||
+      (car.bodyStyle || "").toLowerCase().includes(searchTerm) ||
+      (car.drive || "").toLowerCase().includes(searchTerm) ||
+      (car.transmission || "").toLowerCase().includes(searchTerm) ||
+      (car.fuelType || "").toLowerCase().includes(searchTerm)
     );
   });
   renderCars(filteredCars);
