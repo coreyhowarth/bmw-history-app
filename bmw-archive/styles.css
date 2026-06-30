@@ -15,18 +15,23 @@ body {
 /* Header */
 .site-header {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  gap: 45px;
-  margin-bottom: 24px;
-  padding-left: 220px;
+}
+
+#results-count {
+  margin-top: 10px;
+  text-align: center;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #005A9C;
+  letter-spacing: 0.5px;
 }
 
 .logo-circle {
-  height: 150px;
+  height: 175px;
   flex-shrink: 0;
-  margin: -25px;
-  padding-right: 20px;
 }
 
 .logo-circle img {
@@ -70,6 +75,7 @@ body {
   justify-content: center;
   gap: 28px;
   flex-wrap: wrap;
+  margin-top: -4px;
   margin-bottom: 14px;
 }
 

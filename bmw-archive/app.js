@@ -16,23 +16,6 @@ const decadeButtons = document.querySelectorAll(".decade-nav button");
 // Search-wrapper
 const searchInput = document.getElementById("car-search");
 
-// Loop through every decade button in navigation
-// Example: All Models, 1930s, 1950s, 1970s...
-
-decadeButtons.forEach((button) => {
-  // Wait for user to click a button
-  button.addEventListener("click", () => {
-    // Loop through ALL buttons again
-    // Remove "active" CSS class from every button
-    // This resets previous selection
-    decadeButtons.forEach((btn) => 
-      btn.classList.remove("active")
-    );
-    // Add "active" CSS class ONLY to button user clicked
-    // Visually highlights selected decade
-    button.classList.add("active");
-  });
-});
 // Store ALL BMW cars in memory
 // Needed so we can filter cars later
 let allCars = [];
@@ -115,36 +98,20 @@ function createCarCard(car) {
   `;
 }
 
-// Function that renders BMW cards on webpage
-// Can display ALL cars or FILTERED cars
+const resultsCount = document.getElementById("results-count");
+
 function renderCars(carsToRender) {
-  // Remove old cards first
   grid.innerHTML = "";
-  // Loop through every car object
+
+  resultsCount.textContent = `${carsToRender.length} BMW Models Found`;
+
   carsToRender.forEach((car) => {
     grid.innerHTML += createCarCard(car);
   });
 }
 
 // Search Wrapper EventListener
-searchInput.addEventListener("input", () => {
-  // Run shared filtering logic
-  applyFilters();
-  const filteredCars = allCars.filter((car) => {
-    return (
-      car.model.toLowerCase().includes(searchTerm) ||
-      car.year.toLowerCase().includes(searchTerm) ||
-      car.engine.toLowerCase().includes(searchTerm) ||
-      car.description.toLowerCase().includes(searchTerm)
-      (car.torque || "").toLowerCase().includes(searchTerm) ||
-      (car.bodyStyle || "").toLowerCase().includes(searchTerm) ||
-      (car.drive || "").toLowerCase().includes(searchTerm) ||
-      (car.transmission || "").toLowerCase().includes(searchTerm) ||
-      (car.fuelType || "").toLowerCase().includes(searchTerm)
-    );
-  });
-  renderCars(filteredCars);
-});
+searchInput.addEventListener("input", applyFilters);
 
 // Main function that loads BMW data from AWS backend
 async function loadCars() {
@@ -210,15 +177,27 @@ function applyFilters() {
   }
   // Apply search filter second
   if (searchTerm !== "") {
-    filteredCars = filteredCars.filter((car) => {
-      return (
-        car.model.toLowerCase().includes(searchTerm) ||
-        car.year.toLowerCase().includes(searchTerm) ||
-        car.engine.toLowerCase().includes(searchTerm) ||
-        car.description.toLowerCase().includes(searchTerm)
-      );
-    });
-  }
+  filteredCars = filteredCars.filter((car) => {
+    const searchableText = `
+      ${car.year || ""}
+      ${car.years || ""}
+      ${car.model || ""}
+      ${car.engine || ""}
+      ${car.power || ""}
+      ${car.torque || ""}
+      ${car.topSpeed || ""}
+      ${car.bodyStyle || ""}
+      ${car.drive || ""}
+      ${car.transmission || ""}
+      ${car.fuelType || ""}
+      ${car.description || ""}
+      ${car.category || ""}
+      ${(car.tags || []).join(" ")}
+    `.toLowerCase();
+
+    return searchableText.includes(searchTerm);
+  });
+}
   // Render final filtered cars
   renderCars(filteredCars);
 }
